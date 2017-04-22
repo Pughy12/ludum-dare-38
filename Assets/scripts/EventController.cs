@@ -7,7 +7,7 @@ public class EventController : MonoBehaviour {
 	public DistressCallEvent[] distressCallEvents;
 	
 	void Start () {
-		difficulty = MainController.instance.gameController.getDifficulty ();
+		difficulty = MainController.instance.gameController.getDifficulty();
 //		StartCoroutine ("tick");
 	}
 
@@ -31,7 +31,6 @@ public class EventController : MonoBehaviour {
 
 	private void spawnEvent() 
 	{
-//		Debug.LogFormat("Spawned event of type {0} with an actionChance of {1}",
-//			hazard.getHazardType(), hazard.getActionChance());
+		
 	}
 }
