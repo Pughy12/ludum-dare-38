@@ -26,4 +26,6 @@ public class DistressCallAlertController : MonoBehaviour {
 		}
 		Debug.Log (icon.sprite);
 	}
+
+	
 }
