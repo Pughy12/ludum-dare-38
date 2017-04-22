@@ -18,4 +18,13 @@ public class ViewController : MonoBehaviour {
 	public string getCurrentView() {
 		return currentView;
 	}
+	public GameObject getView(string name) {
+		foreach (GameObject view in views)
+		{
+			if (view.name == name) {
+				return view;
+			}
+		}
+		return null;
+	}
 }
