@@ -1,5 +1,7 @@
-﻿[System.Serializable]
-public class Difficulty {
+﻿using UnityEngine;
+
+[CreateAssetMenu(menuName = "Difficulty")]
+public class Difficulty : ScriptableObject {
 	public float rate;
 	public float multiplier;
 	public float max;

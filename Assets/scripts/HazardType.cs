@@ -5,6 +5,6 @@ using UnityEngine;
 public enum HazardType {
 
 	ASTEROID,
-	PLANET
+	ENEMY
 
 }
