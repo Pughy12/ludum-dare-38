@@ -16,7 +16,9 @@ public class EventSpawner : MonoBehaviour {
 			yield return new WaitForSeconds (difficulty.getRate());
 
 			// Spawn event.
-			Debug.Log("Spawning event.");
+			HazardEvent hazard = new HazardEvent();
+			Debug.LogFormat("Spawned event of type {0} with an actionChance of {1}",
+				hazard.getHazardType(), hazard.getActionChance());
 
 			// Update timings.
 			if (difficulty.getRate() * difficulty.getMultiplier() > difficulty.getMax()) {
