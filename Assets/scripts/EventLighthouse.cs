@@ -5,7 +5,6 @@ using UnityEngine;
 public class EventLighthouse : MonoBehaviour {
 	void OnMouseDown()
 	{
-		Debug.Log ("hmm");
 		transitionToSearching ();
 	}
 	private void transitionToSearching() {
