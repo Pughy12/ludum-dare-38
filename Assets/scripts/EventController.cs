@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class EventController : MonoBehaviour {
 	private Difficulty difficulty;
-	public DistressCallEvent[] distressCallEvents;
+
+	public GameObject distressCallAlertPrefab;
+	public GameObject spawnPlane;
+	public GameObject spawnParent;
+
+	public DistressCallEvent[] potentialDistressCallEvents;
+	private List<DistressCallEvent> activeDistressCallEvents = new List<DistressCallEvent>();
 	
 	void Start () {
 		difficulty = MainController.instance.gameController.getDifficulty();
-//		StartCoroutine ("tick");
+		StartCoroutine ("tick");
 	}
 
 	IEnumerator tick () {
@@ -17,7 +23,7 @@ public class EventController : MonoBehaviour {
 			yield return new WaitForSeconds (difficulty.rate);
 
 			// Spawn event.
-			spawnEvent();
+//			spawnEvent();
 
 			// Update timings.
 			if (difficulty.rate * difficulty.multiplier > difficulty.max) {
@@ -29,14 +35,18 @@ public class EventController : MonoBehaviour {
 		yield break;
 	}
 
-	private void spawnEvent() 
+	public void spawnEvent() 
 	{
-//		Debug.LogFormat("Spawned event of type {0} with an actionChance of {1}",
-//			hazard.getHazardType(), hazard.getActionChance());
-		DistressCallEvent distressEvent = new DistressCallEvent ();
-		Hazard[] eventHazards = generateHazards (Random.Range(1,3)); // tweak range later or incorporate difficulty
-
-		distressEvent.setHazards (eventHazards);
+		// Add an event to the active array.
+		DistressCallEvent e = potentialDistressCallEvents [0];
+		e.setState (DistressCallEvent.DistressCallState.IN_PROGRESS);
+		activeDistressCallEvents.Add (e);
+		// Create the alert for it.
+		GameObject clone = Instantiate(distressCallAlertPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+		clone.transform.parent = spawnParent.transform;
+		clone.transform.localPosition = new Vector3 (0, 0, 0);
+		clone.GetComponent<DistressCallAlertController> ().init (e);
+		// TODO: Co-ordinates.
 	}
 
 	private Hazard[] generateHazards(int num)

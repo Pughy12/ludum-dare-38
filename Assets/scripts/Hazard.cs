@@ -8,6 +8,7 @@ public class Hazard {
 	public HazardType hazardType;
 	public int chance;
 	public int scanTime;
+	public int position;
 
 	/* Accessor Methods */
 
@@ -21,7 +22,13 @@ public class Hazard {
 		return this.chance;
 	}
 
-	public int getScanTime() {
+	public int getScanTime()
+	{
 		return this.scanTime;
+	}
+
+	public int getPosition()
+	{
+		return this.position;
 	}
 }
