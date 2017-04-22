@@ -6,7 +6,7 @@ public class EventController : MonoBehaviour {
 	private Difficulty difficulty;
 	
 	void Start () {
-		difficulty = GameController.getInstance ().getDifficulty ();
+		difficulty = MainController.instance.gameController.getDifficulty ();
 		StartCoroutine ("tick");
 	}
 
@@ -16,7 +16,7 @@ public class EventController : MonoBehaviour {
 			yield return new WaitForSeconds (difficulty.getRate());
 
 			// Spawn event.
-			Debug.Log("Spawning event.");
+			spawnEvent();
 
 			// Update timings.
 			if (difficulty.getRate() * difficulty.getMultiplier() > difficulty.getMax()) {
@@ -24,7 +24,12 @@ public class EventController : MonoBehaviour {
 			} else {
 				difficulty.setRate(difficulty.getRate() * difficulty.getMultiplier());
 			}
-		} while (GameController.getInstance().getGameState() == GameController.GameState.PROGRESS);
+		} while (MainController.instance.gameController.getGameState() == GameController.GameState.PROGRESS);
 		yield break;
+	}
+
+	private void spawnEvent() 
+	{
+		Debug.Log("Spawning event.");
 	}
 }

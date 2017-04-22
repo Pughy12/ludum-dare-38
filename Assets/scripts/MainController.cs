@@ -3,16 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MainController : MonoBehaviour {
-	public static GameController getInstance()
+
+	// Singleton Design Pattern
+	public static MainController instance = null;
+	void Awake()
 	{
-		if (instance == null) {
-			instance = new GameController ();
-		}
-		return instance;
+		if (instance == null)
+			instance = this;
+		else if (instance != this)
+			Destroy(gameObject);
 	}
 
+	// Controller management.
+	public ViewController viewController;
+	public GameController gameController;
+	public EventController eventController;
+
+	// Main method - begin game.
 	void Start () {
 		// Change view.
-		vc.changeView("ViewRoot");
+		viewController.changeView("ViewSearch");
 	}
 }
