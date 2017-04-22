@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HazardEvent {
+public class Hazard {
 
-	private int actionChance;
-	private HazardType hazardType;
+	public int actionChance;
+	public HazardType hazardType;
 
-	public HazardEvent()
+	public Hazard()
 	{
 		// Random chance that the player will have to action this hazard
 		this.actionChance = Random.Range (0, 100);

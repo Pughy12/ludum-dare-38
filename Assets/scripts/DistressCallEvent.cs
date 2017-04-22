@@ -2,13 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DistressCallEvent {
+[CreateAssetMenu(menuName = "Distress Call")]
+public class DistressCallEvent : ScriptableObject {
 
-	public HazardEvent[] hazards;
+	public int numberOfHazards;
+	public Hazard[] hazards;
 
-	public HazardEvent[] getHazards()
+	public Hazard[] getHazards()
 	{
 		return this.hazards;
+	}
+
+	public void setHazards(Hazard[] hazards) 
+	{
+		this.hazards = hazards;
+	}
+
+	public int getNumberOfHazards()
+	{
+		return this.numberOfHazards;
 	}
 
 }
