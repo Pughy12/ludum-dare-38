@@ -6,41 +6,43 @@ public class ViewSearchController : MonoBehaviour, GameView {
 
 	private bool viewEnabled = false;
 
-	private GameObject camera;
-	private GameObject background;
-	private Vector2 previousMousePosition;
+	private Camera camera;
+	private GameObject b;
+	private float bXScale;
+	private float bYScale;
 
 	void Start () {
 		// Get a reference to the camera.
-
+		camera = GameObject.Find("Camera").GetComponent<Camera>();
 		// Get a reference to the background.
-		background = transform.Find("Background").gameObject;
+		b = transform.Find("Background").gameObject;
+		bXScale = b.transform.localScale.x;
+		bYScale = b.transform.localScale.y;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (viewEnabled) {
-
-			Debug.Log("X: " + (Input.GetAxis ("Mouse X")));
-			Debug.Log("X: " + (Input.GetAxis ("Mouse Y")));
-
+			
 			// Move the background based on the user's input position.
+			float dX = Input.GetAxis ("Mouse X");
+			float dY = Input.GetAxis ("Mouse Y");
 
-//			float dX = Input.mousePosition.x - previousMousePosition.x;
-//			float dY = Input.mousePosition.y - previousMousePosition.y;
-//
-//			float bX = background.transform.localPosition.x; 
-//			float bY = background.transform.localPosition.y;
-//
-//			Debug.Log ("Mouse delta: x: " + dX + ", y:" + dY);
-//			Debug.Log ("Background current position: x: " + bX + ", y:" + bY);
-//
-//			Debug.Log ("New position:");
-//			Debug.Log (bX + dX + " " + bY + dY + " " + background.transform.position.z);
-//
-//			background.transform.localPosition = new Vector3(bX + dX, bY + dY, background.transform.localPosition.z);
+			// If there have been no changes, don't move screen.
+			if (dX == 0 && dY == 0) {
+				return;
+			}
+
+			float bX = b.transform.localPosition.x; 
+			float bY = b.transform.localPosition.y;
+
+			// Clamp this to the bounds of the camera.
+			Vector3 vP = camera.WorldToViewportPoint (b.transform.TransformPoint(new Vector3 (bX, bY, b.transform.localPosition.z)));
+			Debug.Log ("x: " + vP.x + ", y: " + vP.y + ", z: " + vP.z);
+
+
+			b.transform.localPosition = new Vector3(bX + dX, bY + dY, b.transform.localPosition.z);
 		}
-//		previousMousePosition = Input.mousePosition;
 	}
 
 	// Enter the view.

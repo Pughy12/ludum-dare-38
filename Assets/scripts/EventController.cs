@@ -7,7 +7,7 @@ public class EventController : MonoBehaviour {
 	
 	void Start () {
 		difficulty = MainController.instance.gameController.getDifficulty ();
-		StartCoroutine ("tick");
+//		StartCoroutine ("tick");
 	}
 
 	IEnumerator tick () {
