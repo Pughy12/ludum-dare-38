@@ -30,6 +30,8 @@ public class EventController : MonoBehaviour {
 
 	private void spawnEvent() 
 	{
-		Debug.Log("Spawning event.");
+		HazardEvent hazard = new HazardEvent();
+		Debug.LogFormat("Spawned event of type {0} with an actionChance of {1}",
+			hazard.getHazardType(), hazard.getActionChance());
 	}
 }
