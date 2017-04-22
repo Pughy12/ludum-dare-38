@@ -41,11 +41,11 @@ public class EventController : MonoBehaviour {
 
 	private Hazard[] generateHazards(int num)
 	{
-		Hazard[] eventHazards = Hazard[num];
+		Hazard[] eventHazards = new Hazard[num];
 
 		for (int i = 0; i < num; i++)
 		{
-			eventHazards [i] = Hazard ();
+			eventHazards [i] = new Hazard ();
 		}
 
 		return eventHazards;

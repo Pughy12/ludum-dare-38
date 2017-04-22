@@ -27,7 +27,6 @@ public class DistressCallEvent : ScriptableObject {
 	public void setHazards(Hazard[] hazards) 
 	{
 		this.hazards = hazards;
-		this.numberOfHazards = hazards.GetLength ();
 	}
 	public int getLength() {
 		return this.length;
