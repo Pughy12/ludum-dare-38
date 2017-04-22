@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EventSpawner : MonoBehaviour {
+public class EventController : MonoBehaviour {
 	private Difficulty difficulty;
 	
 	void Start () {

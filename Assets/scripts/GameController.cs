@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameController {
+public class GameController : MonoBehaviour {
 
 	/* Managed Fields */
 
@@ -18,22 +18,12 @@ public class GameController {
 	private Player player;
 
 	// Difficulty
-	private Difficulty difficulty;
+	public Difficulty difficulty;
 
-	/* Singleton Design */
-
-	private static GameController instance;
-	private GameController() {
+	/* Run */
+	void Start() {
 		player = new Player ();
-		difficulty = new Difficulty(20f, 0.9f, 5f);
 		this.state = GameState.PROGRESS;
-	}
-	public static GameController getInstance()
-	{
-		if (instance == null) {
-			instance = new GameController ();
-		}
-		return instance;
 	}
 
 	/* Accessor Methods */
