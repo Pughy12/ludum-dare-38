@@ -13,16 +13,16 @@ public class EventController : MonoBehaviour {
 	IEnumerator tick () {
 		do {
 			// Wait
-			yield return new WaitForSeconds (difficulty.getRate());
+			yield return new WaitForSeconds (difficulty.rate);
 
 			// Spawn event.
 			spawnEvent();
 
 			// Update timings.
-			if (difficulty.getRate() * difficulty.getMultiplier() > difficulty.getMax()) {
-				difficulty.setRate(difficulty.getMax());
+			if (difficulty.rate * difficulty.multiplier > difficulty.max) {
+				difficulty.rate = difficulty.max;
 			} else {
-				difficulty.setRate(difficulty.getRate() * difficulty.getMultiplier());
+				difficulty.rate = difficulty.rate * difficulty.multiplier;
 			}
 		} while (MainController.instance.gameController.getGameState() == GameController.GameState.PROGRESS);
 		yield break;
