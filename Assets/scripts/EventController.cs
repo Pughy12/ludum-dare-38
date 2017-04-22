@@ -33,5 +33,21 @@ public class EventController : MonoBehaviour {
 	{
 //		Debug.LogFormat("Spawned event of type {0} with an actionChance of {1}",
 //			hazard.getHazardType(), hazard.getActionChance());
+		DistressCallEvent distressEvent = new DistressCallEvent ();
+		Hazard[] eventHazards = generateHazards (Random.Range(1,3)); // tweak range later or incorporate difficulty
+
+		distressEvent.setHazards (eventHazards);
+	}
+
+	private Hazard[] generateHazards(int num)
+	{
+		Hazard[] eventHazards = Hazard[num];
+
+		for (int i = 0; i < num; i++)
+		{
+			eventHazards [i] = Hazard ();
+		}
+
+		return eventHazards;
 	}
 }
