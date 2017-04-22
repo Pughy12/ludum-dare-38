@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EventController : MonoBehaviour {
 	private Difficulty difficulty;
+	public DistressCallEvent[] distressCallEvents;
 	
 	void Start () {
 		difficulty = MainController.instance.gameController.getDifficulty ();
@@ -30,8 +31,7 @@ public class EventController : MonoBehaviour {
 
 	private void spawnEvent() 
 	{
-		HazardEvent hazard = new HazardEvent();
-		Debug.LogFormat("Spawned event of type {0} with an actionChance of {1}",
-			hazard.getHazardType(), hazard.getActionChance());
+//		Debug.LogFormat("Spawned event of type {0} with an actionChance of {1}",
+//			hazard.getHazardType(), hazard.getActionChance());
 	}
 }
