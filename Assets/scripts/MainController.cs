@@ -19,9 +19,4 @@ public class MainController : MonoBehaviour {
 	public GameController gameController;
 	public EventController eventController;
 
-	// Main method - begin game.
-	void Start () {
-		// Change view.
-		viewController.getView("ViewSearch").GetComponent<ViewSearchController>().enterView();
-	}
 }
