@@ -7,7 +7,7 @@ public class EventController : MonoBehaviour {
 	public DistressCallEvent[] distressCallEvents;
 	
 	void Start () {
-		difficulty = MainController.instance.gameController.getDifficulty ();
+		difficulty = MainController.instance.gameController.getDifficulty();
 //		StartCoroutine ("tick");
 	}
 

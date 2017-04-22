@@ -2,33 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Hazard {
 
-	public int actionChance;
 	public HazardType hazardType;
+	public int chance;
+	public int scanTime;
 
-	public Hazard()
-	{
-		// Random chance that the player will have to action this hazard
-		this.actionChance = Random.Range (0, 100);
-
-		// For now, all hazards are the same. This will be different later though.
-		this.hazardType = HazardType.ASTEROID;
-	}
-
-	// Getters
-	public int getActionChance()
-	{
-		return this.actionChance;
-	}
+	/* Accessor Methods */
 
 	public HazardType getHazardType()
 	{
 		return this.hazardType;
 	}
 
+	public int getChance()
+	{
+		return this.chance;
+	}
 
-
-	
-
+	public int getScanTime() {
+		return this.scanTime;
+	}
 }
