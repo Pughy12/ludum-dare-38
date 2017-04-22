@@ -4,22 +4,27 @@ using UnityEngine;
 
 public class EventSpawner : MonoBehaviour {
 	private Difficulty difficulty;
-
-	// Use this for initialization
+	
 	void Start () {
+		difficulty = GameController.getInstance ().getDifficulty ();
 		StartCoroutine ("tick");
 	}
 
 	IEnumerator tick () {
 		do {
-			yield return new WaitForSeconds (3.0f);
-			Debug.Log ("Tick");
+			// Wait
+			yield return new WaitForSeconds (difficulty.getRate());
+
+			// Spawn event.
+			Debug.Log("Spawning event.");
+
+			// Update timings.
+			if (difficulty.getRate() * difficulty.getMultiplier() > difficulty.getMax()) {
+				difficulty.setRate(difficulty.getMax());
+			} else {
+				difficulty.setRate(difficulty.getRate() * difficulty.getMultiplier());
+			}
 		} while (GameController.getInstance().getGameState() == GameController.GameState.PROGRESS);
 		yield break;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 }

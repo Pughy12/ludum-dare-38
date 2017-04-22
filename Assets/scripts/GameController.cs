@@ -18,13 +18,14 @@ public class GameController {
 	private Player player;
 
 	// Difficulty
-	public Difficulty difficulty;
+	private Difficulty difficulty;
 
 	/* Singleton Design */
 
 	private static GameController instance;
 	private GameController() {
 		player = new Player ();
+		difficulty = new Difficulty(20f, 0.9f, 5f);
 		this.state = GameState.PROGRESS;
 	}
 	public static GameController getInstance()

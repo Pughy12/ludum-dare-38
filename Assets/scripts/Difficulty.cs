@@ -1,21 +1,39 @@
-﻿[System.Serializable]
-/// <summary>
-/// Adjust game difficulty.
-/// </summary>
-public class Difficulty {
-	
-	/// <summary>
-	/// The rate at which events will fire.
-	/// </summary>
-	public int rate;
+﻿public class Difficulty {
+	private float rate;
+	private float multiplier;
+	private float max;
 
-	/// <summary>
-	/// The value to multiply the rate with each time.
-	/// </summary>
-	public int multiplier;
+	public Difficulty(float rate, float multiplier, float max)
+	{
+		this.rate = rate;
+		this.multiplier = multiplier;
+		this.max = max;
+	}
 
-	/// <summary>
-	/// The cap on the rate value.
-	/// </summary>
-	public int max;
+	public float getRate()
+	{
+		return this.rate;
+	}
+	public void setRate(float rate)
+	{
+		this.rate = rate;
+	}
+
+	public float getMultiplier()
+	{
+		return this.multiplier;
+	}
+	public void setMultiplier(float multiplier)
+	{
+		this.multiplier = multiplier;
+	}
+
+	public float getMax()
+	{
+		return this.max;
+	}
+	public void setMax(float max)
+	{
+		this.max = max;
+	}
 }
