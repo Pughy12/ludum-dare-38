@@ -16,8 +16,10 @@ public class ViewSearchController : MonoBehaviour, GameView {
 		camera = GameObject.Find("Camera").GetComponent<Camera>();
 		// Get a reference to the background.
 		b = transform.Find("Background").gameObject;
-		bXScale = b.transform.localScale.x;
-		bYScale = b.transform.localScale.y;
+//		bXScale = b.transform.localScale.x;
+//		bYScale = b.transform.localScale.y;
+		bXScale = 60;
+		bYScale = 40;
 	}
 	
 	// Update is called once per frame
@@ -36,12 +38,29 @@ public class ViewSearchController : MonoBehaviour, GameView {
 			float bX = b.transform.localPosition.x; 
 			float bY = b.transform.localPosition.y;
 
+			Vector3 nPCenter = new Vector3(bX + dX, bY + dY, b.transform.localPosition.z);
+
+			Vector3 nPTopLeft = new Vector3(nPCenter.x - bXScale / 2, nPCenter.y - bYScale / 2, nPCenter.z);
+			Vector3 nPTopRight = new Vector3(nPCenter.x + bXScale / 2, nPCenter.y - bYScale / 2, nPCenter.z);
+			Vector3 nPBottomLeft = new Vector3(nPCenter.x - bXScale / 2, nPCenter.y + bYScale / 2, nPCenter.z);
+			Vector3 nPBottomRight = new Vector3(nPCenter.x + bXScale / 2, nPCenter.y + bYScale / 2, nPCenter.z);
+
 			// Clamp this to the bounds of the camera.
-			Vector3 vP = camera.WorldToViewportPoint (b.transform.TransformPoint(new Vector3 (bX, bY, b.transform.localPosition.z)));
-			Debug.Log ("x: " + vP.x + ", y: " + vP.y + ", z: " + vP.z);
+			Vector3 nVPTopLeft = camera.WorldToViewportPoint(b.transform.TransformPoint(nPTopLeft));
+			Vector3 nVPTopRight = camera.WorldToViewportPoint(b.transform.TransformPoint(nPTopRight));
+			Vector3 nVPBottomLeft = camera.WorldToViewportPoint(b.transform.TransformPoint(nPBottomLeft));
+			Vector3 nVPBottomRight = camera.WorldToViewportPoint(b.transform.TransformPoint(nPBottomRight));
 
+			if (nVPTopLeft.x > 0 && nVPTopLeft.x < 1 && nVPTopLeft.y > 0 && nVPTopLeft.y < 1) {
+				Debug.Log ("Top left corner is in view!");
+			}
 
-			b.transform.localPosition = new Vector3(bX + dX, bY + dY, b.transform.localPosition.z);
+//			Debug.Log (worldPoint.x + " " + worldPoint.y + " " + worldPoint.z);
+
+			Vector3 vP = camera.WorldToViewportPoint (nPCenter);
+//			Debug.Log ("x: " + vP.x + ", y: " + vP.y + ", z: " + vP.z);
+
+			b.transform.localPosition = nPCenter;
 		}
 	}
 
