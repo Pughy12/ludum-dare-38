@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 [CreateAssetMenu(menuName = "Distress Call")]
 public class DistressCallEvent : ScriptableObject {
-	public static float BUFFER = 5f;
+	public static float BUFFER = 2.5f;
 
 	[System.Serializable]
 	public enum DistressCallState {
