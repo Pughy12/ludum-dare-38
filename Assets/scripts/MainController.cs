@@ -19,9 +19,4 @@ public class MainController : MonoBehaviour {
 	public GameController gameController;
 	public EventController eventController;
 
-	void Start()
-	{
-		eventController.spawnEvent ();
-	}
-
 }

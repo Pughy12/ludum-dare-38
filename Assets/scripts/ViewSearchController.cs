@@ -56,9 +56,7 @@ public class ViewSearchController : MonoBehaviour, GameView {
 					nPCenter.x = bX;
 				}
 			}
-			if (nPCenter != null) {
-				b.transform.localPosition = Vector3.Lerp (b.transform.localPosition, nPCenter, 0.1f);
-			}
+			b.transform.localPosition = Vector3.Lerp (b.transform.localPosition, nPCenter, 0.1f);
 		}
 	}
 

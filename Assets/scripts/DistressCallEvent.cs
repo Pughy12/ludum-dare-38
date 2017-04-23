@@ -5,7 +5,9 @@ using UnityEngine;
 [System.Serializable]
 [CreateAssetMenu(menuName = "Distress Call")]
 public class DistressCallEvent : ScriptableObject {
+	public static float BUFFER = 5f;
 
+	[System.Serializable]
 	public enum DistressCallState {
 		UNCALLED,
 		IN_PROGRESS,
@@ -17,13 +19,13 @@ public class DistressCallEvent : ScriptableObject {
 	public int length = 100;
 
 	public Ship ship;
+
 	public Hazard[] hazards;
 
 	public Hazard[] getHazards()
 	{
 		return this.hazards;
 	}
-
 	public void setHazards(Hazard[] hazards) 
 	{
 		this.hazards = hazards;
@@ -36,5 +38,9 @@ public class DistressCallEvent : ScriptableObject {
 	}
 	public void setState(DistressCallState state) {
 		this.state = state;
+	}
+	public Ship getShip()
+	{
+		return this.ship;
 	}
 }
