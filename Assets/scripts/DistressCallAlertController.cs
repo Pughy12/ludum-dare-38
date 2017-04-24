@@ -10,23 +10,27 @@ public class DistressCallAlertController : MonoBehaviour {
 
 	void Update()
 	{
-		// TODO: Clean - camera access should be unified.
-		// Check if mouse button is held down.
-		if (e.getState() == DistressCallEvent.DistressCallState.IN_PROGRESS && Input.GetMouseButtonDown (0)) {
-			Camera camera = GameObject.Find ("Camera").GetComponent<Camera> ();
-			Vector3 cameraCenter = camera.ScreenToWorldPoint(new Vector3(Screen.width / 2f, Screen.height / 2f, camera.nearClipPlane));
-			Vector3 fwd = camera.transform.TransformDirection(Vector3.forward);
+		if(e != null) {
+			// TODO: Clean - camera access should be unified.
+			// Check if mouse button is held down.
+			if (e.getState () == DistressCallEvent.DistressCallState.IN_PROGRESS && Input.GetMouseButtonDown (0)) {
+				Camera camera = GameObject.Find ("Camera").GetComponent<Camera> ();
+				Vector3 cameraCenter = camera.ScreenToWorldPoint (new Vector3 (Screen.width / 2f, Screen.height / 2f, camera.nearClipPlane));
+				Vector3 fwd = camera.transform.TransformDirection (Vector3.forward);
 
-			// Check if the distress call is being clicked on.
-			RaycastHit hit;
-			if (Physics.Raycast(cameraCenter, fwd, out hit, 1000)) {
-				if (hit.transform.gameObject == this.gameObject) {
-					transitionToDistressCall ();
+				// Check if the distress call is being clicked on.
+				RaycastHit hit;
+				if (Physics.Raycast (cameraCenter, fwd, out hit, 1000)) {
+					if (hit.transform.gameObject == this.gameObject) {
+						// If we haven't just left that view.
+						if (!(Time.time - EventBackButton.t < 1f)) {
+							transitionToDistressCall ();
+						}
+					}
 				}
 			}
-		}
-		if (icon && e) {
-			switch (e.getState ()) {
+			if (icon && e != null) {
+				switch (e.getState ()) {
 				case DistressCallEvent.DistressCallState.IN_PROGRESS:
 					icon.sprite = Resources.Load<Sprite> (PATH_ICON + "icon-event-progress");
 					break;
@@ -36,6 +40,7 @@ public class DistressCallAlertController : MonoBehaviour {
 				case DistressCallEvent.DistressCallState.FAILED:
 					icon.sprite = Resources.Load<Sprite> (PATH_ICON + "icon-event-failure");
 					break;
+				}
 			}
 		}
 	}

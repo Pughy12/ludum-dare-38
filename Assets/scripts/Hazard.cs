@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
 public class Hazard {
 
-	[System.Serializable]
 	public enum HazardStatus
 	{
 		UNSCANNED,
@@ -13,13 +11,12 @@ public class Hazard {
 		EVADED,
 		HIT
 	}
-	[System.NonSerialized]
 	private HazardStatus state = HazardStatus.UNSCANNED;
 
 	public HazardType hazardType;
-	public int chance;
-	public int scanTime;
-	public int position;
+	public int chance = 0;
+	public int scanTime = 1;
+	public int position = -100;
 
 	public bool checkCollision(Ship s, float buffer)
 	{

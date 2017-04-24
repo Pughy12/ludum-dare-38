@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-[CreateAssetMenu(menuName = "Distress Call")]
-public class DistressCallEvent : ScriptableObject {
+public class DistressCallEvent {
 	public static float BUFFER = 2.5f;
 
-	[System.Serializable]
 	public enum DistressCallState {
 		UNCALLED,
 		IN_PROGRESS,
@@ -42,5 +39,9 @@ public class DistressCallEvent : ScriptableObject {
 	public Ship getShip()
 	{
 		return this.ship;
+	}
+	public void setShip(Ship ship)
+	{
+		this.ship = ship;
 	}
 }

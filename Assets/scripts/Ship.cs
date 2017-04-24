@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-[CreateAssetMenu(menuName = "Ship")]
-public class Ship : ScriptableObject {
+public class Ship {
 
 	public bool isScanned = false;
 
